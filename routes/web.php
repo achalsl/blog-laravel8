@@ -17,31 +17,7 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 */
 
 Route::get('/', function () {
-    $files = File::files(resource_path('posts'));
-
-    $posts = collect($files)
-    ->map(function($file) {
-        $document = YamlFrontMatter::parseFile($file);
-        return new Post(
-            $document->title,
-            $document->excerpt,
-            $document->date,
-            $document->body(),
-            $document->slug
-        );
-    });
-
-    // $posts = array_map(function($file) {
-    //     $document = YamlFrontMatter::parseFile($file);
-    //     return new Post(
-    //         $document->title,
-    //         $document->excerpt,
-    //         $document->date,
-    //         $document->body(),
-    //         $document->slug
-    //     );
-    // }, $files);
-    
+    $posts = Post::findAll();
     return view('posts', [
         'posts' => $posts
     ]);
