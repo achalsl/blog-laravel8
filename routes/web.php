@@ -17,15 +17,15 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 */
 
 Route::get('/', function () {
-    $posts = Post::findAll();
+    $posts = Post::all();
     return view('posts', [
         'posts' => $posts
     ]);
 });
 
-Route::get('posts/{post}', function ($slug) {
+Route::get('posts/{post}', function (Post $post) {
 // Find a post by its slug and pass it to a view called post
     return view('post', [
-        'post' => Post::find($slug)
+        'post' => $post
     ]);
-})->where('post', '[A-z_\-]+');
+});
