@@ -5,7 +5,7 @@
         <h1><?= e($post-> title); ?></h1>
         <p>
             By 
-            <a href="/users/" . <?= $post->user->id ?> . "/posts">
+            <a href="/users/<?= $post->user->id ?>/posts">
                 <?= $post->user->name; ?>
             </a> in 
             <a href="/categories/<?= $post->category->slug ?>">

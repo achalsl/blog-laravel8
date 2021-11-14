@@ -9,6 +9,10 @@
                     </a>
                 </h1>
                 <p>
+                    By 
+                    <a href="/users/<?= $post->user->id ?>">
+                        <?= $post->user->name; ?>
+                    </a> in 
                     <a href="/categories/<?= $post->category->slug ?>">
                         <?= $post->category->name ?>
                     </a>
