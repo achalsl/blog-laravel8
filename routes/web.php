@@ -25,7 +25,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('posts/{post}', function (Post $post) {
+Route::get('posts/{post:slug}', function (Post $post) {
 // Find a post by its slug and pass it to a view called post
     return view('post', [
         'post' => $post
@@ -35,12 +35,12 @@ Route::get('posts/{post}', function (Post $post) {
 Route::get('categories/{category:slug}', function (Category $category) {
     
     return view('posts', [
-        'posts' => $category->posts
+        'posts' => $category->posts->load(['category', 'user'])
     ]);
 });
 
-Route::get('users/{user}', function (User $user) {
+Route::get('users/{user:username}', function (User $user) {
     return view('posts', [
-        'posts' => $user->posts
+        'posts' => $user->posts->load(['category', 'user'])
     ]);
 });
